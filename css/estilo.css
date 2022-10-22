@@ -25,8 +25,15 @@ body{
     gap:15px;
     justify-content: space-around;
     flex-wrap: wrap;
+    
 }
+.carta:active {
 
+    transform: scale(0.97);
+ 
+    transition: transform .2s;
+ 
+  }
 .carta{
     box-sizing: border-box;
     width: 117px;
@@ -37,13 +44,26 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: rotateY(0deg); 
+    transition: all 1s linear;
+    transform: scale(1);
+    transform-style: preserve-3d;
 }
+
 
 img{
     width: 100px;
     height: 100px;
 }
 
+
+.virada{
+    transform: rotateY(-180deg); 
+}
+
+.escondido{
+    display: none;
+}
 
 @media (max-width: 600px){
     .titulo{
@@ -53,7 +73,6 @@ img{
         width: 100%;
         
     }
-    
 
     .jogo{
         width: 100%;
