@@ -25,13 +25,13 @@ function comparador() {
 
 while((quantidadeCartas/2) > contador){
     posicaoCarta.innerHTML += `
-    <div class="carta" data-framework="${versos[contador]}">
-        <img class="verso" src="/imagens/back.png">
-        <img class="frente " src="/cartas/${versos[contador]}parrot.gif">
+    <div class="carta" data-cartinha="${versos[contador]}">
+        <img class="verso" src="imagens/back.png">
+        <img class="frente " src="cartas/${versos[contador]}parrot.gif">
     </div>
-    <div class="carta" data-framework="${versos[contador]}">
-        <img class="verso" src="/imagens/back.png">
-        <img class="frente " src="/cartas/${versos[contador]}parrot.gif">
+    <div class="carta" data-cartinha="${versos[contador]}">
+        <img class="verso" src="imagens/back.png">
+        <img class="frente " src="cartas/${versos[contador]}parrot.gif">
     </div>
     `;
 
@@ -73,7 +73,7 @@ function virar() {
 
 function formaPar() {
 
-    if (primeiraCarta.dataset.framework === segundaCarta.dataset.framework) {
+    if (primeiraCarta.dataset.cartinha === segundaCarta.dataset.cartinha) {
 
         desativarCarta();
         corretas++;
