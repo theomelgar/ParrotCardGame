@@ -1,6 +1,7 @@
 let quantidadeCartas = Number(prompt('Quntas cartas?(4-14)'));
 
 let versos = ['bobross','explody','fiesta', 'metal', 'revertit','triplets','unicorn'];
+versos.sort(comparador); // Após esta linha, a minhaArray estará embaralhada
 
 while ( quantidadeCartas & 1){
     quantidadeCartas = Number(prompt('Quntos pares de cartas?(4-14)'));
@@ -14,6 +15,13 @@ while((quantidadeCartas/2) < 2 || (quantidadeCartas/2) > 7){
 let posicaoCarta = document.querySelector('.jogo');
 
 let contador = 0;
+
+
+
+// Esta função pode ficar separada do código acima, onde você preferir
+function comparador() { 
+    return Math.random() - 0.5; 
+}
 
 while((quantidadeCartas/2) > contador){
     posicaoCarta.innerHTML += `
@@ -29,7 +37,7 @@ while((quantidadeCartas/2) > contador){
 
     contador ++;
 }
-  
+
 const cartas = document.querySelectorAll(".carta");
 
 let corretas = 0;
@@ -37,6 +45,7 @@ let jogadas = 1;
 let cartaVirada = false;
 let primeiraCarta, segundaCarta;
 let inibidor = false;
+let tempoPassado = 0;
 
 function virar() {
     if (inibidor){
@@ -93,13 +102,14 @@ function desativarCarta() {
 function desvirar() {
     inibidor = true;
 
-    setTimeout(() => {
-        primeiraCarta.classList.remove('virada');
-        segundaCarta.classList.remove('virada');
+    setTimeout(removeVirada, 1000);
 
-        resetCartas();
-    }, 1000);
+}
 
+function removeVirada(){
+    primeiraCarta.classList.remove('virada');
+    segundaCarta.classList.remove('virada');
+    resetCartas();
 }
 
 function resetCartas() {
@@ -109,30 +119,51 @@ function resetCartas() {
     primeiraCarta = null;
     segundaCarta = null;
 
-  }
- 
-
-(function embaralhar() {
-
-    cartas.forEach(carta => {
- 
-        let ramdomPos = Math.floor(Math.random() * 14);
- 
-        carta.style.order = ramdomPos;
- 
-    });
- 
-})();
-
-cartas.forEach(carta => { 
-    carta.addEventListener('click', virar);
-});
-
-function click(){
-    jogadas++;
-    return jogadas;
 }
+
+
+function embaralhar() {
+    contador = 0;
+    while (contador < cartas.length){
+        let ramdomPos = Math.floor(Math.random() * 14);
+        let carta = cartas[contador];
+        carta.style.order = ramdomPos;
+        carta.addEventListener('click', virar);
+        contador++;
+    }
+}
+
 
 function ganhou(){
-    alert(`Você ganhou em ${jogadas} jogadas!`);
+    alert(`Você ganhou em ${tempoPassado} segundos, com ${jogadas} jogadas!`);
+    reiniciar();
 }
+
+function cronometro(){
+    timer = document.querySelector('.timer');
+    tempoPassado++;
+    timer.innerHTML = `Tempo : ${tempoPassado}`;
+}
+
+
+function reiniciar(){
+    let repete = true;
+    while (repete){
+        let decisao = prompt("Gostaria de jogar de novo?");
+        if(decisao === "sim"){
+            repete = false;
+            location.reload();
+            return;
+        }
+        else if(decisao === "não" ){
+            repete = false;
+            return;
+        }
+        else{
+            repete= true;
+        }
+    }
+    
+}
+embaralhar();
+setInterval(cronometro,1000);

@@ -25,6 +25,16 @@ body{
     gap:15px;
     justify-content: space-around;
     flex-wrap: wrap;
+    position: relative;
+}
+
+.timer{
+    position: absolute;
+    top:0;
+    right: 0;
+    font-weight: 700;
+    font-size: 30px;
+    color: #75B79E;  
 }
 
 .carta:active {
@@ -86,5 +96,9 @@ body{
         margin: 0 auto;
         align-items: center;
         gap: 20px   ;
+    }
+
+    .timer{
+        font-size: 15px;
     }
 }
