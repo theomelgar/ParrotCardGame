@@ -7,7 +7,7 @@ Escrito e dirigido por: Theo Goldbach Melgar
 <p align = "center"> <img src="https://user-images.githubusercontent.com/93146829/197615274-27225fa0-09a1-44c9-869a-6ece50eabab3.png"/> </p>
 
 </br>
-<p align = "center">  </p>
+<p align = "center"> <img src="https://user-images.githubusercontent.com/93146829/197615966-29901112-2ca1-4e97-8239-58cab1b8b3bc.png" </p>
 </br>
 
 ## ✏️ Descrição
