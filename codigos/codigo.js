@@ -33,22 +33,91 @@ while((quantidadeCartas/2) > contador){
 const cartas = document.querySelectorAll(".carta");
 
 
-function virar(){
-    this.classList.add("virada");
+let cartaVirada = false;
+
+let primeiraCarta, segundaCarta;
+let inibidor = false;
+
+function virar() {
+    if (inibidor){
+        return;
+    }
+
+    if (this === primeiraCarta){
+        return;
+    } 
+
+    this.classList.add('virada');
+
+    if (!cartaVirada) {
+        cartaVirada = true;
+        primeiraCarta = this;
+        return;
+    }
+    segundaCarta = this;
+
+    formaPar();
+
 }
 
+
+function formaPar() {
+
+    if (primeiraCarta.dataset.framework === segundaCarta.dataset.framework) {
+
+        desativarCarta();
+
+        return;
+
+    }
+    desvirar();
+
+}
+
+
+function desativarCarta() {
+
+    primeiraCarta.removeEventListener('click', virar);
+
+    segundaCarta.removeEventListener('click', virar);
+
+    resetCartas();
+}
+
+
+function desvirar() {
+    inibidor = true;
+
+    setTimeout(() => {
+        primeiraCarta.classList.remove('virada');
+        segundaCarta.classList.remove('virada');
+
+        resetCartas();
+    }, 1000);
+
+}
+
+function resetCartas() {
+    
+    cartaVirada = false;
+    inibidor =  false;
+    primeiraCarta = null;
+    segundaCarta = null;
+ 
+  }
+ 
 
 (function embaralhar() {
 
     cartas.forEach(carta => {
  
-      let ramdomPos = Math.floor(Math.random() * 14);
+        let ramdomPos = Math.floor(Math.random() * 14);
  
-      carta.style.order = ramdomPos;
+        carta.style.order = ramdomPos;
  
     });
  
-  })();
+})();
 
 cartas.forEach(carta => { carta.addEventListener('click', virar)
 });
