@@ -32,9 +32,9 @@ while((quantidadeCartas/2) > contador){
   
 const cartas = document.querySelectorAll(".carta");
 
-
+let corretas = 0;
+let jogadas = 1;
 let cartaVirada = false;
-
 let primeiraCarta, segundaCarta;
 let inibidor = false;
 
@@ -52,12 +52,13 @@ function virar() {
     if (!cartaVirada) {
         cartaVirada = true;
         primeiraCarta = this;
+        jogadas++;
         return;
     }
     segundaCarta = this;
 
     formaPar();
-
+    jogadas++;
 }
 
 
@@ -66,7 +67,11 @@ function formaPar() {
     if (primeiraCarta.dataset.framework === segundaCarta.dataset.framework) {
 
         desativarCarta();
-
+        corretas++;
+        if (corretas === (quantidadeCartas/2)){
+            ganhou();
+            return;
+        }
         return;
 
     }
@@ -103,7 +108,7 @@ function resetCartas() {
     inibidor =  false;
     primeiraCarta = null;
     segundaCarta = null;
- 
+
   }
  
 
@@ -119,5 +124,15 @@ function resetCartas() {
  
 })();
 
-cartas.forEach(carta => { carta.addEventListener('click', virar)
+cartas.forEach(carta => { 
+    carta.addEventListener('click', virar);
 });
+
+function click(){
+    jogadas++;
+    return jogadas;
+}
+
+function ganhou(){
+    alert(`Você ganhou em ${jogadas} jogadas!`);
+}
