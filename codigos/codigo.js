@@ -46,6 +46,7 @@ let cartaVirada = false;
 let primeiraCarta, segundaCarta;
 let inibidor = false;
 let tempoPassado = 0;
+let repete = true;
 
 function virar() {
     if (inibidor){
@@ -140,6 +141,9 @@ function ganhou(){
 }
 
 function cronometro(){
+    if (repete === false){
+        return;
+    }
     timer = document.querySelector('.timer');
     tempoPassado++;
     timer.innerHTML = `Tempo : ${tempoPassado}`;
@@ -147,22 +151,21 @@ function cronometro(){
 
 
 function reiniciar(){
-    let repete = true;
-    while (repete){
-        let decisao = prompt("Gostaria de jogar de novo?");
-        if(decisao === "sim"){
-            repete = false;
-            location.reload();
-            return;
-        }
-        else if(decisao === "não" ){
-            repete = false;
-            return;
-        }
-        else{
-            repete= true;
-        }
+while (repete){
+    let decisao = prompt("Gostaria de jogar de novo?");
+    if(decisao === "sim"){
+        repete = false;
+        location.reload();
+        return;
     }
+    else if(decisao === "não" ){
+        repete = false;
+        return;
+    }
+    else{
+        repete= true;
+    }
+}
     
 }
 embaralhar();
