@@ -4,7 +4,7 @@
 Escrito e dirigido por: Theo Goldbach Melgar
 </br>
 </br>
-<p align = "center"> <img src="https://github.com/theomelgar/driven-eats/blob/main/driveneats1.png"/> </p>
+<p align = "center"> <img src="![image](https://user-images.githubusercontent.com/93146829/197615274-27225fa0-09a1-44c9-869a-6ece50eabab3.png)"/> </p>
 
 </br>
 <p align = "center"> <img src="https://github.com/theomelgar/driven-eats/blob/main/driveneats.png"/> </p>
